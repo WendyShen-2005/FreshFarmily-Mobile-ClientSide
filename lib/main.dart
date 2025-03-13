@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled3/LoginSignupComponents/LoginSignupViaButt.dart';
 
 void main() =>
     runApp(MaterialApp(
@@ -6,6 +7,12 @@ void main() =>
     ));
 
 class Home extends StatelessWidget {
+
+  List<LoginSignupViaButt> viaButtons = [
+    LoginSignupViaButt(name: "Google", icon: Icons.abc),
+    LoginSignupViaButt(name: "Facebook", icon: Icons.facebook),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +21,7 @@ class Home extends StatelessWidget {
             style: TextStyle(
               color: Colors.white,
             ),
-            "FreshFarmily - Client Side",
+            "FreshFarmily - Customer Side",
         ),
         centerTitle: true,
         backgroundColor: Colors.deepPurpleAccent,
@@ -22,7 +29,7 @@ class Home extends StatelessWidget {
 
       ),
       body:
-       Row(
+       Column(
           children: [
             Image.network(
                 width: 100,
@@ -30,8 +37,37 @@ class Home extends StatelessWidget {
             ),
             Text(
               style: TextStyle(fontSize: 30),
-              "Login"
+              "Customer log in..."
             ),
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "Username/email",
+              ),
+            ),
+            TextField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "Password",
+              ),
+            ),
+            TextButton(
+                onPressed: (){},
+                child: Text("Forgot password?")
+            ),
+            Text("Or, log in via..."),
+            Column(
+              children: viaButtons.map((button) =>
+                loginSignupViaButtTemplate(button)
+              ).toList(),
+            ),
+            Text(
+              "No account?"
+            ),
+            TextButton(
+                onPressed: (){},
+                child: Text("Sign up")
+            )
           ],
 
       ),
