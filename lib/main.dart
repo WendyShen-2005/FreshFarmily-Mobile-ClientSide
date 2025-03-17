@@ -27,9 +27,12 @@ class Home extends StatelessWidget {
       ),
       body: Column(
         children: [
-          productSelected(product: vendors[0].products[0]),
+          Container(
+            height: 725,
+              child: mainSearch(context)
+          ),
           // VendorSelected(vendor: vendors[0]).build(context),
-          Spacer(),
+          // Spacer(),
           bottomNavBar().build(context),
         ],
       ),

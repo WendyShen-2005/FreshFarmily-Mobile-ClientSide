@@ -36,11 +36,14 @@ class bottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: list.map((li) =>
-            li.build(context)
-        ).toList(),
+      Container(
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: list.map((li) =>
+              li.build(context)
+          ).toList(),
+        ),
       );
   }
 }
