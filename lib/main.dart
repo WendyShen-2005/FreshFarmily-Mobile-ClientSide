@@ -12,30 +12,34 @@ void main() =>
       home:Home(),
     ));
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  const Home({super.key});
 
-  List<LoginSignupViaButt> viaButtons = [
-    LoginSignupViaButt(name: "Google", icon: Icons.abc),
-    LoginSignupViaButt(name: "Facebook", icon: Icons.facebook),
-  ];
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("FreshFarmily - Customer Side"),
-      ),
-      body: Column(
-        children: [
-          Container(
-            height: 725,
-              child: mainSearch(context)
-          ),
-          // VendorSelected(vendor: vendors[0]).build(context),
-          // Spacer(),
-          bottomNavBar().build(context),
-        ],
-      ),
+    appBar: AppBar(
+      title: Text("FreshFarmily - Customer Side"),
+    ),
+    body: Column(
+      children: [
+        Container(
+          height: 725,
+          child: mainSearch().createState().build(context),
+        ),
+        // VendorSelected(vendor: vendors[0]).build(context),
+        // Spacer(),
+        bottomNavBar().build(context),
+      ],
+    ),
     );
   }
 }

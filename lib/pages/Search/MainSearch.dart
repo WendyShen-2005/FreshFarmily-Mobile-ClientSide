@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled3/FakeVendorDatabase/Vendors.dart';
@@ -5,30 +7,75 @@ import 'package:untitled3/FakeVendorDatabase/VendorsDatabase.dart';
 
 const customYellow = Color.fromRGBO(255, 230, 0, 0.3);
 
-Widget productVendorSearchSelectButt (BuildContext context) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Expanded(
-        child: Container(
-          color: customYellow,
-          child: TextButton(
-              onPressed: () => {},
-              child: Text("Products")
-          ),
-        ),
-      ),
-      Expanded(
-        child: Container(
-          child: TextButton(
-              onPressed: () => {},
-              child: Text("Vendors")
-          ),
-        ),
-      ),
-    ],
-  );
+class productVendorSearchSelectButt extends StatefulWidget {
+  const productVendorSearchSelectButt({super.key});
+
+  @override
+  State<productVendorSearchSelectButt> createState() => _productVendorSearchSelectButtState();
 }
+
+class _productVendorSearchSelectButtState extends State<productVendorSearchSelectButt> {
+  int mode = 0;
+  @override
+  Widget build(BuildContext context) {
+    if(mode == 0) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Container(
+              color: customYellow,
+              child: TextButton(
+                  onPressed: () => setState(() {
+                    mode = 0;
+                  }),
+                  child: Text("Products")
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              child: TextButton(
+                  onPressed: () => setState(() {
+                    mode = 1;
+                  }),
+                  child: Text("Vendors")
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(
+          child: Container(
+            child: TextButton(
+                onPressed: () => setState(() {
+                  mode = 0;
+                }),
+                child: Text("Products")
+            ),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            color: customYellow,
+            child: TextButton(
+                onPressed: () => setState(() {
+                  mode = 1;
+                }),
+                child: Text("Vendors")
+            ),
+          ),
+        ),
+      ],
+    );;
+  }
+}
+
+
 
 class productListing extends StatelessWidget {
 
@@ -100,47 +147,88 @@ Widget allProductListings(BuildContext context) {
     );
 }
 
-Widget allVendorListings(BuildContext context) {
-  return Column(
-    children: vendors.map((vendor) =>
-        Column(
-          children: [
-            // Image.network(vendor.bannerUrl),
-            Text("${vendor.businessName} | ${vendor.owner}"),
-            Text(vendor.description),
-          ],
-        )
-    ).toList(),
-  );
-}
+class vendorListing extends StatelessWidget {
+  Vendor vendor;
+  vendorListing({required this.vendor});
 
-Widget mainSearch(BuildContext context) {
-  return Column(
-    children: [
-      Row(
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Icon(
-                Icons.search
+          Image.network(vendor.bannerUrl, height: 50, width: 200,),
+          Text("${vendor.businessName} | ${vendor.owner}",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold
             ),
           ),
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                  hintText: "Search..."
-              ),
+          Text(vendor.description),
+          Text("${vendor.products.length} items, including: ${vendor.products[0]}",
+            style: TextStyle(
+              color: Colors.grey
             ),
-          ),
+          )
         ],
       ),
-      productVendorSearchSelectButt(context),
-      Container(
+    );
+  }
 
-          color: customYellow,
-          child: allProductListings(context)
-        // allVendorListings(context)
-      ),
-    ],
-  );
+}
+
+Widget allVendorListings(BuildContext context) {
+  return
+    ListView(
+      shrinkWrap: true,
+      children: vendors.map((vend) =>
+        vendorListing(vendor: vend).build(context)
+      ).toList(),
+    );
+}
+
+class mainSearch extends StatefulWidget {
+  const mainSearch({super.key});
+
+  @override
+  State<mainSearch> createState() => _mainSearchState();
+}
+
+class _mainSearchState extends State<mainSearch> {
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Icon(
+                  Icons.search
+              ),
+            ),
+            Expanded(
+              child: TextField(
+                decoration: InputDecoration(
+                    hintText: "Search..."
+                ),
+              ),
+            ),
+          ],
+        ),
+        productVendorSearchSelectButt(),
+        Container(
+
+            color: customYellow,
+            child:
+            // allProductListings(context)
+            allVendorListings(context)
+        ),
+        // TextButton(onPressed: (){print("hello");}, child: Text("data"),)
+      ],
+      
+    );
+  }
 }
