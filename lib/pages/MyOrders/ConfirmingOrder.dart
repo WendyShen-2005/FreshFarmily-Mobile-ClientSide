@@ -42,36 +42,47 @@ class orderDetails extends StatelessWidget{
 
 }
 
-Widget ConfirmingOrder(BuildContext context) {
+class ConfirmingOrder extends StatefulWidget {
+  const ConfirmingOrder({super.key});
 
-  return Column(
-    children: [
-      Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Text("Please confirm your order:",
-          style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold
+  @override
+  State<ConfirmingOrder> createState() => _ConfirmingOrderState();
+}
+
+class _ConfirmingOrderState extends State<ConfirmingOrder> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text("Please confirm your order:",
+            style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold
+            ),
           ),
         ),
-      ),
-      orderDetails(product: vendors[0].products[0], units: 10, deliveryLocation: "123 Blah street, A1B 2C3"),
-      TextButton(onPressed: (){}, child: Text("Looks good!"),
-        style: TextButton.styleFrom(
-            side: BorderSide(
-                color: Colors.black,
-                width: 1
-            )
+        orderDetails(product: vendors[0].products[0],
+            units: 10,
+            deliveryLocation: "123 Blah street, A1B 2C3"),
+        TextButton(onPressed: () {}, child: Text("Looks good!"),
+          style: TextButton.styleFrom(
+              side: BorderSide(
+                  color: Colors.black,
+                  width: 1
+              )
+          ),
         ),
-      ),
-      TextButton(onPressed: (){}, child: Text("Cancel"),
-        style: TextButton.styleFrom(
-            side: BorderSide(
-                color: Colors.black,
-                width: 1
-            )
+        TextButton(onPressed: () {}, child: Text("Cancel"),
+          style: TextButton.styleFrom(
+              side: BorderSide(
+                  color: Colors.black,
+                  width: 1
+              )
+          ),
         ),
-      ),
-    ],
-  );
+      ],
+    );
+  }
 }

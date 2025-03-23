@@ -38,34 +38,45 @@ class _RateOrderStarsState extends State<RateOrderStars> {
   }
 }
 
+class RateOrder extends StatefulWidget {
+  const RateOrder({super.key});
 
-Widget RateOrder(BuildContext context) {
-  return Column(
-    children: [
-      Image.network("https://th.bing.com/th/id/OIP.QVBY30VqTi-tlYt_BaoGqAHaEo?rs=1&pid=ImgDetMain"),
-      Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Text("Rate your order:", style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold
-        ),),
-      ),
-      RateOrderStars(),
-      Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: TextField(
-          decoration: InputDecoration(
-            hintText: "Comments",
+  @override
+  State<RateOrder> createState() => _RateOrderState();
+}
+
+class _RateOrderState extends State<RateOrder> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Image.network(
+            "https://th.bing.com/th/id/OIP.QVBY30VqTi-tlYt_BaoGqAHaEo?rs=1&pid=ImgDetMain"),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text("Rate your order:", style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold
+          ),),
+        ),
+        RateOrderStars(),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: "Comments",
+            ),
           ),
         ),
-      ),
-      TextButton(onPressed: (){}, child: Text("Close"), style: TextButton.styleFrom(
-          side: BorderSide(
-              color: Colors.black,
-              width: 1
-          )
-      ),)
-    ],
+        TextButton(
+          onPressed: () {}, child: Text("Close"), style: TextButton.styleFrom(
+            side: BorderSide(
+                color: Colors.black,
+                width: 1
+            )
+        ),)
+      ],
 
-  );
+    );
+  }
 }

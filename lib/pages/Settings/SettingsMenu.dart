@@ -20,20 +20,29 @@ class SettingOption extends StatelessWidget {
 
 }
 
-Widget SettingsMenu(BuildContext context) {
+class SettingsMenu extends StatefulWidget {
+  const SettingsMenu({super.key});
 
+  @override
+  State<SettingsMenu> createState() => _SettingsMenuState();
+}
+
+class _SettingsMenuState extends State<SettingsMenu> {
   List<SettingOption> options = [
     SettingOption(icon: Icons.person, name: "Account"),
     SettingOption(icon: Icons.lock, name: "Privacy & Security"),
     SettingOption(icon: Icons.wallet, name: "Billing"),
   ];
 
-  return Column(
-    children: [
-      Text("Settings"),
-      Column(
-        children: options.map((option) => option.build(context)).toList()
-      )
-    ],
-  );
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text("Settings"),
+        Column(
+            children: options.map((option) => option.build(context)).toList()
+        )
+      ],
+    );
+  }
 }

@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:untitled3/FakeVendorDatabase/Vendors.dart';
 import 'package:untitled3/pages/Search/MainSearch.dart';
 
-class VendorSelected extends StatelessWidget {
+class VendorSelected extends StatefulWidget {
   Vendor vendor;
   VendorSelected({required this.vendor});
 
+  @override
+  State<VendorSelected> createState() => _VendorSelectedState();
+}
+
+class _VendorSelectedState extends State<VendorSelected> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,19 +24,17 @@ class VendorSelected extends StatelessWidget {
                   Icons.arrow_left
                 )
             ),
-            Text(vendor.businessName)
+            Text(widget.vendor.businessName)
           ],
         ),
-        Image.network(vendor.bannerUrl),
-        Text(vendor.description),
+        Image.network(widget.vendor.bannerUrl),
+        Text(widget.vendor.description),
         Column(
-          children: vendor.products.map((product) =>
+          children: widget.vendor.products.map((product) =>
             productListing(prod: product).build(context)
           ).toList(),
         )
       ],
     );
   }
-
-
 }

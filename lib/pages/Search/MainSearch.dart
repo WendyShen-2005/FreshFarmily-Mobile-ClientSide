@@ -138,13 +138,12 @@ Widget allProductListings(BuildContext context) {
   }
 
   return
-    Container(
-      height:MediaQuery.of(context).size.height,
-      child: ListView(
-        shrinkWrap: true,
-        children: list.map((li) => Container(child: li,)).toList(),
-      ),
-    );
+      // Container(
+      //   height: MediaQuery.of(context).size.height - 230,
+        ListView(
+          shrinkWrap: true,
+          children: list.map((li) => Container(child: li,)).toList(),
+      );
 }
 
 class vendorListing extends StatelessWidget {
@@ -220,12 +219,13 @@ class _mainSearchState extends State<mainSearch> {
         ),
         productVendorSearchSelectButt(),
         Container(
-
+            height: MediaQuery.of(context).size.height - 230,
             color: customYellow,
             child:
-            // allProductListings(context)
-            allVendorListings(context)
+            allProductListings(context)
+            // allVendorListings(context)
         ),
+
         // TextButton(onPressed: (){print("hello");}, child: Text("data"),)
       ],
       
