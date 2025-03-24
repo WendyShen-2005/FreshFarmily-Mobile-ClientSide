@@ -4,12 +4,15 @@ import 'package:flutter/material.dart';
 class SettingOption extends StatelessWidget {
   IconData icon;
   String name;
+  String route;
 
-  SettingOption({required this.icon, required this.name});
+  SettingOption({required this.icon, required this.name, required this.route});
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(onPressed: (){}, child: Row(
+    return TextButton(onPressed: (){
+      Navigator.pushNamed(context, route);
+    }, child: Row(
       children: [
         Icon(icon),
         Text(name)
@@ -29,9 +32,9 @@ class SettingsMenu extends StatefulWidget {
 
 class _SettingsMenuState extends State<SettingsMenu> {
   List<SettingOption> options = [
-    SettingOption(icon: Icons.person, name: "Account"),
-    SettingOption(icon: Icons.lock, name: "Privacy & Security"),
-    SettingOption(icon: Icons.wallet, name: "Billing"),
+    SettingOption(icon: Icons.person, name: "Account", route:'/settings-account'),
+    SettingOption(icon: Icons.lock, name: "Privacy & Security", route:'/settings-privacy-and-security'),
+    SettingOption(icon: Icons.wallet, name: "Billing", route:'/settings-billing'),
   ];
 
   @override

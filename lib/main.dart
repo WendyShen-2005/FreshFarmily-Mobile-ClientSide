@@ -17,7 +17,22 @@ import 'package:untitled3/pages/Settings/SettingsPrivacyAndSecurity.dart';
 
 void main() =>
     runApp(MaterialApp(
-      home:Home(),
+      initialRoute: '/logged-out',
+      routes: {
+        '/logged-out': (context) => screens(scr: 11),
+        '/search': (context) => screens(scr: 0),
+        '/product-selected': (context) => screens(scr: 1),
+        '/vendor-selected': (context) => screens(scr: 2),
+        '/settings-account': (context) => screens(scr: 3),
+        '/settings-billing': (context) => screens(scr: 4),
+        '/settings-menu': (context) => screens(scr: 5),
+        '/settings-privacy-and-security': (context) => screens(scr: 6),
+        '/orders-list': (context) => screens(scr: 7),
+        '/orders-confirming': (context) => screens(scr: 8),
+        '/orders-progress': (context) => screens(scr: 9),
+        '/orders-rate': (context) => screens(scr: 10),
+
+      },
     ));
 
 class Home extends StatefulWidget {
@@ -72,7 +87,7 @@ class _screensState extends State<screens> {
   Widget build(BuildContext context) {
     return Scaffold(
     appBar: AppBar(
-      title: Text("FreshFarmily - Customer Side"),
+      title: Text("FreshFarmily"),
     ),
     body: Column(
       children: [

@@ -13,21 +13,14 @@ class productSelected extends StatelessWidget {
       ListView(
         shrinkWrap: true,
         children: [
-          Row(
-            children: [
-              TextButton(
-                  onPressed: () => {},
-                  child: Icon(
-                      Icons.arrow_left
-                  )
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(product.name,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20
               ),
-              Text(product.name,
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20
-                ),
-              )
-            ],
+            ),
           ),
           Image.network(product.imgs[0]),
           Center(

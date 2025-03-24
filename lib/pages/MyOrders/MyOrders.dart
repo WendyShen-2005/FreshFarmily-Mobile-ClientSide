@@ -44,7 +44,13 @@ class order {
   
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: (){},
+      onPressed: (){
+        if(delivered == "In progress...") {
+          Navigator.pushNamed(context, '/orders-progress');
+        } else {
+          Navigator.pushNamed(context, '/orders-rate');
+        }
+      },
       child: Row(
         children: [
           Padding(
