@@ -1,21 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled3/SharedComponents/BottomNavBar.dart';
+import 'package:untitled3/backend/auth_service.dart';
 
 import 'LoginSignupViaButt.dart';
 
-class loginPage extends StatefulWidget {
-  const loginPage({super.key});
+class signupPage extends StatefulWidget {
+  const signupPage({super.key});
 
   @override
-  State<loginPage> createState() => _loginPageState();
+  State<signupPage> createState() => _signupPageState();
 }
 
-class _loginPageState extends State<loginPage> {
+class _signupPageState extends State<signupPage> {
   List<LoginSignupViaButt> viaButtons = [
     LoginSignupViaButt(name: "Google", icon: Icons.abc),
     LoginSignupViaButt(name: "Facebook", icon: Icons.facebook),
   ];
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,6 @@ class _loginPageState extends State<loginPage> {
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-
             children: [
               Image.network(
                   width: 100,
@@ -32,41 +35,49 @@ class _loginPageState extends State<loginPage> {
               ),
               Text(
                   style: TextStyle(fontSize: 30),
-                  "Customer log in..."
+                  "Customer sign up..."
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
+                  controller: emailController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    hintText: "Username/email",
+                    hintText: "Email",
                   ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
+                  controller: passwordController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: "Password",
                   ),
                 ),
               ),
-              TextButton(
-                  onPressed: () {},
-                  child: Text("Forgot password?")
-              ),
-              TextButton(onPressed: (){
-                Navigator.pushNamed(context, '/log-out');
-                Navigator.pushNamed(context, '/search');
+              TextButton(onPressed: () async {
 
+
+                await AuthService().signup(
+                    email: emailController.text,
+                    password: passwordController.text
+                );
+
+                print("signup clicked");
+
+                // Navigator.pushNamed(context, '/log-out');
+                // Navigator.pushNamed(context, '/search');
               }, style: TextButton.styleFrom(
                   side: BorderSide(
                       color: Colors.black,
                       width: 1
                   )
-              ), child: Text("Log in")),
-              Text("Or, log in via..."),
+              ),
+                  child: Text("Sign up")
+              ),
+              Text("Or, sign up via..."),
               Column(
                 children: viaButtons.map((button) =>
                     loginSignupViaButtTemplate(button)
@@ -78,9 +89,9 @@ class _loginPageState extends State<loginPage> {
               TextButton(
                   onPressed: () {
                     Navigator.pop(context);
-                    Navigator.pushNamed(context, '/sign-up');
+                    Navigator.pushNamed(context, '/log-in');
                   },
-                  child: Text("Sign up")
+                  child: Text("Log in")
               ),
             ],
 

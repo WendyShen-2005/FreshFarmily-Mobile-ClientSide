@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "244951072554",
+    "project_id": "freshfarmily-2bca5",
+    "storage_bucket": "freshfarmily-2bca5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244951072554:android:c2b71d95fac3406d6be853",
+        "android_client_info": {
+          "package_name": "com.example.untitled3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARYE1hEM2FIXjolaSgUeiDaL8Jy_oECtE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
