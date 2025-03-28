@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled3/SharedComponents/BottomNavBar.dart';
+import 'package:untitled3/backend/auth_service.dart';
 
 import 'LoginSignupViaButt.dart';
 
@@ -16,6 +17,9 @@ class _loginPageState extends State<loginPage> {
     LoginSignupViaButt(name: "Google", icon: Icons.abc),
     LoginSignupViaButt(name: "Facebook", icon: Icons.facebook),
   ];
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,15 +41,17 @@ class _loginPageState extends State<loginPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
+                  controller: emailController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    hintText: "Username/email",
+                    hintText: "Email",
                   ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
+                  controller: passwordController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: "Password",
@@ -56,9 +62,12 @@ class _loginPageState extends State<loginPage> {
                   onPressed: () {},
                   child: Text("Forgot password?")
               ),
-              TextButton(onPressed: (){
-                Navigator.pushNamed(context, '/log-out');
-                Navigator.pushNamed(context, '/search');
+              TextButton(onPressed: () async {
+                await AuthService().signin(
+                  email: emailController.text,
+                  password: passwordController.text,
+                  context: context
+                );
 
               }, style: TextButton.styleFrom(
                   side: BorderSide(

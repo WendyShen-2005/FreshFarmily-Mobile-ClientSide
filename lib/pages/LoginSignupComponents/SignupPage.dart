@@ -62,7 +62,8 @@ class _signupPageState extends State<signupPage> {
 
                 await AuthService().signup(
                     email: emailController.text,
-                    password: passwordController.text
+                    password: passwordController.text,
+                    context: context
                 );
 
                 print("signup clicked");

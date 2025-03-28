@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled3/SharedComponents/BottomNavBar.dart';
 
+import '../../backend/auth_service.dart';
+
 class logoutPage extends StatefulWidget {
   const logoutPage({super.key});
 
@@ -25,9 +27,8 @@ class _logoutPageState extends State<logoutPage> {
                       padding: const EdgeInsets.all(16.0),
                       child: Text("Log out"),
                     ),
-                    TextButton(onPressed: (){
-                      Navigator.of(context).popUntil((route) => route.isFirst);
-                      Navigator.pushNamed(context, "/log-in");
+                    TextButton(onPressed: () async {
+                      await AuthService().signout(context: context);
                     }, style: TextButton.styleFrom(
                         side: BorderSide(
                             color: Colors.black,
