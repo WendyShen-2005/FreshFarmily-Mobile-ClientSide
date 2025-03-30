@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../FakeVendorDatabase/Vendors.dart';
+import '../../backend/Vendors.dart';
 
 class productSelected extends StatelessWidget {
   Product product;
@@ -55,7 +55,9 @@ class productSelected extends StatelessWidget {
             ),
             Text("Cost of items: \$50\nDelivery cost: \$2\nTax: \$7\nTotal cost: \$59"),
             TextButton(
-                onPressed: ()=>{},
+                onPressed: ()=>{
+                  Navigator.pushNamed(context, '/orders-confirming')
+                },
                 child: Text("Purchase")
             )
           ]

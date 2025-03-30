@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled3/FakeVendorDatabase/Vendors.dart';
+import 'package:untitled3/backend/Vendors.dart';
 import 'package:untitled3/FakeVendorDatabase/VendorsDatabase.dart';
 
 const customYellow = Color.fromRGBO(255, 230, 0, 0.3);

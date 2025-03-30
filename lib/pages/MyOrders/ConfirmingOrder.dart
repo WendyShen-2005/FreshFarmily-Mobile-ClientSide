@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:untitled3/FakeVendorDatabase/Vendors.dart';
+import 'package:untitled3/backend/Vendors.dart';
 import 'package:untitled3/FakeVendorDatabase/VendorsDatabase.dart';
+import 'package:untitled3/backend/db_service.dart';
 
 class orderDetails extends StatelessWidget{
   Product product;
@@ -66,7 +67,18 @@ class _ConfirmingOrderState extends State<ConfirmingOrder> {
         orderDetails(product: vendors[0].products[0],
             units: 10,
             deliveryLocation: "123 Blah street, A1B 2C3"),
-        TextButton(onPressed: () {}, child: Text("Looks good!"),
+        TextButton(onPressed: () {
+          Navigator.pop(context);
+          Navigator.pushNamed(context, '/orders-list');
+          createOrder(
+            Order(vendorName: "The Best Farmer",
+                productName: "Salmon",
+                imgUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Salmo_salar.jpg/220px-Salmo_salar.jpg",
+                delivered: "...in progress",
+                rating: "5/5")
+          );
+        },
+          child: Text("Looks good!"),
           style: TextButton.styleFrom(
               side: BorderSide(
                   color: Colors.black,

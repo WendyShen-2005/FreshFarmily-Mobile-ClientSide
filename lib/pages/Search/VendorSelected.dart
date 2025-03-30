@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled3/FakeVendorDatabase/Vendors.dart';
+import 'package:untitled3/backend/Vendors.dart';
 import 'package:untitled3/pages/Search/MainSearch.dart';
 
 class VendorSelected extends StatefulWidget {

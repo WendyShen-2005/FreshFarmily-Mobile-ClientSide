@@ -1,4 +1,4 @@
-import 'package:untitled3/FakeVendorDatabase/Vendors.dart';
+import 'package:untitled3/backend/Vendors.dart';
 
 List<Vendor> vendors = [
   Vendor(
